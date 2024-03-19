@@ -1,0 +1,448 @@
+CREATE TABLE City (
+    cityId INT PRIMARY KEY,
+    cityName VARCHAR(100),
+    State VARCHAR(100)
+);
+
+INSERT INTO City (cityId, cityName, State)
+VALUES
+    (1, 'Edinburgh', 'Northern Scotland'),
+   (2, 'Glasgow', 'Southwestern Scotland'),
+    (3, 'Aberdeen', 'Highlands and Islands'),
+    (4, 'Dundee', 'Eastern Scotland'),
+    (5, 'Dumfries', 'Southwestern Scotland'),
+    (6, 'Perth', 'Northern Scotland'),
+    (7, 'Elgin', 'Highlands and Islands'),
+    (8, 'Shetland', 'Islands');
+
+CREATE TABLE Address (
+    addressId INT PRIMARY KEY,
+    StreetNo VARCHAR(20),
+    StreetName VARCHAR(100),
+    cityId INT,
+    zip VARCHAR(20),
+    FOREIGN KEY (cityId) REFERENCES City(cityId)
+);
+
+INSERT INTO Address (addressId, StreetNo, StreetName, cityId, zip)
+VALUES
+    (1, '1', 'Princes Street', 1, 'EH1 1AA'),
+    (2, '1', 'Buchanan Street', 2, 'G1 1AA'),
+    (3, '1', 'Union Street', 3, 'AB1 1AA'),
+    (4, '1', 'High Street', 4, 'ZE3 1AA'),
+    (5, '1', 'Friars Vennel', 5, 'L11 1AA'),
+    (6, '1', 'High Street', 6, 'FX1 1AA'),
+    (7, '1', 'High Street', 7, 'TA1 1AA'),
+    (8, '1', 'Argyle Street', 2, 'G1 2AA'),
+	(9, '1', 'Dissic Street', 2, 'G1 2AB'),
+	(10, '1', 'Agraey Street', 2, 'G1 2CA'),
+	(11, '1', 'Scots Street', 2, 'G1 3AA'),
+	(12, '1', 'Johny Walker Street', 2, 'G1 7AA'),
+	(13, '1', 'Breets Street', 2, 'G1 3VA'),
+	(14, '1', 'Friars Vennel', 5, 'L11 1AB'),
+	(15, '1', 'Monks Tunnel', 5, 'L11 1AC'),
+	(16, '1', 'Dogs Kennel', 5, 'L11 1AD'),
+	(17, '1', 'Target Practice', 5, 'L11 1AE'),
+	(18, '1', 'Lowell Street', 6, 'FX1 1ZA'),
+	(19, '1', 'Grey hound Street', 6, 'FX1 1YA'),
+	(20, '1', 'Chappaquiddick Street', 6, 'FX1 1XA'),
+	(21, '1', 'High End Street', 6, 'FX1 1WA'),
+	(22, '10', 'High Street', 4, 'ZE3 9AA'),
+	(23, '20', 'Union Street', 3, 'AB1 7BA'),
+	(24, '10', 'Jack Street', 3, 'AB1 5zA'),
+	(25, '5', 'Sweat Street', 3, 'AB1 6CA'),
+	(26, '10', 'Princes Street', 1, 'EH1 1AB'),
+	(27, '19', 'Duke Street', 1, 'EH1 1AC'),
+	(28, '20', 'Prince Street', 1, 'EH1 1AM');
+
+
+
+
+-- staffRole
+CREATE TABLE StaffRoles (
+    roleNo INT PRIMARY KEY,
+    roleDescription VARCHAR(50)
+);
+
+
+INSERT INTO StaffRoles (roleNo, roleDescription)
+VALUES
+    (1, 'Senior Instructor'),
+    (2, 'Instructor'),
+    (3, 'Administrator');
+
+-- Staff
+CREATE TABLE Staff (
+    staffId INT PRIMARY KEY,
+    SSN VARCHAR(9) UNIQUE,
+    fName VARCHAR(20),
+    lName VARCHAR(20),
+    gender CHAR(1),
+    dob DATE,
+    officeId INT,
+    roleNo INT,
+    --FOREIGN KEY (officeId) REFERENCES Offices(officeId),
+    FOREIGN KEY (roleNo) REFERENCES StaffRoles(roleNo)
+);
+
+CREATE TABLE Offices (
+    officeId INT PRIMARY KEY,
+    officeName VARCHAR(255),
+    addressId INT,
+	managerId INT,
+    FOREIGN KEY (addressId) REFERENCES Address(addressId),
+    --FOREIGN KEY (managerId) REFERENCES Staff(staffId)
+);
+
+	INSERT INTO Offices (officeId, officeName, addressId, managerId)
+VALUES
+    (1, 'Bearsden Office', 2, 1),
+    (2, 'LionKennel Office', 8, 6),
+	(3, 'SouthGate Office', 1, 19),
+	(4, 'Bonnet Office', 3, 10),
+    (5, 'Havertz Office', 4, 13),
+    (6, 'South Office', 5, 20),
+	(7, 'McOmbothi Office', 6, 21);
+
+INSERT INTO Staff (staffId, SSN, fName, lName, gender, dob, officeId, roleNo)
+VALUES
+    (1, '123456789', 'Ariho', 'Joram', 'M', '1991-03-01', 1, 1),
+    (2, '987654321', 'Sam', 'Smith', 'F', '1985-05-15', 1, 2),
+    (3, '567890123', 'Mbadi', 'Wilson', 'M', '1990-10-20', 1, 2),
+	(4, '123456788', 'Arinda', 'Hilary', 'M', '1981-03-21', 1, 3),
+    (5, '987654322', 'Kabwama', 'Collin', 'F', '1965-05-25', 2, 3),
+    (6, '567890133', 'Mwemeke', 'Susan', 'F', '1999-10-10', 2, 1),
+	(7, '123556789', 'Agaba', 'Ivan', 'M', '1951-03-01', 3, 1),
+    (8, '987644321', 'Sam', 'Smith', 'F', '2009-05-16', 3, 1),
+    (9, '567190123', 'Woodrow', 'Wilson', 'M', '2007-10-20', 3, 3),
+	(10, '123456889', 'Tom', 'Hanks', 'M', '1985-03-01', 4, 1),
+    (11, '977654321', 'Meeda', 'Hope', 'F', '1997-12-15', 4, 3),
+    (12, '567891123', 'Agaba', 'Ivanka', 'M', '1997-12-15', 4, 3),
+	(13, '123450089', 'Diana', 'NotPrincess', 'M', '1990-09-01', 5, 1),
+    (14, '987658921', 'Michelle', 'Obama', 'F', '1988-05-25', 5, 1),
+    (15, '562390123', 'George', 'Bush', 'M', '1999-10-29', 5, 1),
+	(16, '123418989', 'Sweet', 'Carolina', 'M', '1981-03-01', 5, 3),
+    (17, '987654421', 'Henrietta', 'Hanks', 'F', '1985-05-15', 4, 2),
+    (18, '567690123', 'Mohammed', 'Ali', 'M', '1990-10-20', 5, 2),
+	(19, '123402789', 'Donald', 'Glover', 'M', '1991-03-01', 3, 1),
+    (20, '987687321', 'Ali', 'Bomaye', 'M', '1985-05-15', 6, 1),
+    (21, '517890123', 'George', 'Foreman', 'M', '1990-10-20', 7, 1);
+
+ALTER TABLE Staff
+ADD CONSTRAINT FK_Staff_Offices
+FOREIGN KEY (officeId) REFERENCES Offices(officeId);
+
+ALTER TABLE Offices
+ADD CONSTRAINT FK_Offices_Staff
+FOREIGN KEY (managerId) REFERENCES Staff(staffId)
+
+
+CREATE TABLE Cars (
+    CarId INT PRIMARY KEY,
+    StaffId INT,
+    RegistrationId VARCHAR(20) UNIQUE,
+    Make VARCHAR(50)
+);
+
+-- Insert 20 records into the Cars table
+INSERT INTO Cars (CarId, StaffId, RegistrationId, Make) VALUES
+(1, 1, 'ABC123', 'Toyota'),
+(2, 2, 'DEF456', 'Honda'),
+(3, 3, 'GHI789', 'Suzuki'),
+(4, 6, 'JKL012', 'Toyota'),
+(5, 7, 'MNO345', 'Honda'),
+(6, 8, 'PQR678', 'Land Rover'),
+(7, 10, 'STU901', 'Toyota'),
+(8, 13, 'VWX234', 'Honda'),
+(9, 14, 'YZA567', 'Ford'),
+(10, 15, 'BCD890', 'Toyota'),
+(11, 17, 'EFG123', 'Honda'),
+(12, 18, 'HIJ456', 'Ford'),
+(13, 19, 'KLM789', 'Fiat'),
+(14, 20, 'NOP012', 'Honda'),
+(15, 21, 'QRS345', 'Renault'),
+(16, NULL, 'TUV678', 'Toyota'),
+(17, NULL, 'WXY901', 'Honda'),
+(18, NULL, 'ZAB234', 'Tesla'),
+(19, NULL, 'CDE567', 'Tesla'),
+(20, NULL, 'FGH890', 'Tesla');
+
+CREATE TABLE Inspection (
+    InspectionNo INT PRIMARY KEY,
+    CarId INT,
+    InspectionReportResult VARCHAR(50),
+    InspectionDate DATE
+);
+
+-- Insert specified rows
+INSERT INTO Inspection (InspectionNo, CarId, InspectionReportResult, InspectionDate)
+VALUES
+    (1, 1, 'Passed', '2020-01-15'),
+    (2, 2, 'Failed', '2023-02-20'),
+    (3, 3, 'Passed', '2022-03-25'),
+    (4, 4, 'Passed', '2023-04-10'),
+    (5, 5, 'Failed', '2024-01-05'),
+    (6, 1, 'Passed', '2022-06-15'),
+    (7, 2, 'Passed', '2023-07-10'),
+    (8, 3, 'Failed', '2023-08-25'),
+    (9, 4, 'Passed', '2024-09-10'),
+    (10, 6, 'Passed', '2024-10-05'),
+    (11, 7, 'Passed', '2024-01-15'),
+    (12, 8, 'Failed', '2024-02-20'),
+    (13, 9, 'Passed', '2024-01-25'),
+    (14, 10, 'Passed', '2024-01-10'),
+    (15, 11, 'Failed', '2023-12-25'),
+    (16, 12, 'Passed', '2024-06-15'),
+    (17, 13, 'Passed', '2024-07-20'),
+    (18, 14, 'Failed', '2024-08-25'),
+    (19, 15, 'Passed', '2024-09-10'),
+    (20, 16, 'Passed', '2024-03-10'),
+    (21, 17, 'Passed', '2024-03-10'),
+    (22, 18, 'Passed', '2024-03-10'),
+    (23, 19, 'Passed', '2024-03-10'),
+    (24, 20, 'Passed', '2024-03-10'),
+    (25, 5, 'Passed', '2024-03-05'),
+    (26, 1, 'Passed', '2024-01-15');
+
+CREATE TABLE Clients (
+    clientNo INT PRIMARY KEY,
+    fName VARCHAR(255),
+    lName VARCHAR(255),
+    dob DATE,
+    transportingInstructorNo INT,
+    requestedInstructorNo INT,
+    addressId INT,
+    gender CHAR(1),
+    FOREIGN KEY (transportingInstructorNo) REFERENCES Staff(staffId)
+);
+
+-- Populate the Clients table
+INSERT INTO Clients (clientNo, fName, lName, dob, transportingInstructorNo, requestedInstructorNo, addressId, gender)
+VALUES
+    (1, 'Adam', 'Driver', '1999-03-15', 1, 1, 9, 'F'),
+    (2, 'Erratic', 'Driver', '1988-08-25', 2, 2, 10, 'M'),
+	(3, 'Want', 'ToLearn', '2001-03-15', 20, 20, 14, 'F'),
+    (4, 'Sleepy', 'Head', '1998-08-25', 21, 21, 21, 'M'),
+	(5, 'Road', 'Rage', '2005-03-15', 18, 15, 22, 'F'),
+    (6, 'Mad', 'Max', '1988-08-25', 17, 10, 25, 'M'),
+	(7, 'Mule', 'Carrier', '1990-03-15', 8, 8, 26, 'F'),
+    (8, 'Amish', 'Man', '1988-08-25', 19, 19, 27, 'M'),
+	(9, 'Rocket', 'Man', '1969-05-05', 8, 8, 15, 'F'),
+    (10, 'Martin', 'Luther', '1958-08-15', 6, 6, 20, 'M'),
+	(11, 'Corretta', 'King', '1960-03-17', 6, 6, 19, 'F'),
+    (12, 'Look', 'Head', '1998-08-25', 3, 2, 16, 'M'),
+	(13, 'Rockand', 'Roll', '2015-11-05', 19, 19, 28, 'F'),
+    (14, 'Madden', 'Cunningham', '1988-08-25', 3, 3, 23, 'M'),
+	(15, 'Peter', 'Thighel', '2000-03-27', 6, 6, 11, 'F'),
+    (16, 'Ama', 'Man', '2008-08-30', 20, 20, 24, 'M'),
+	(17, 'Sweet', 'Sixteen', '2008-03-15', 21, 21, 18, 'F'),
+    (18, 'Child', 'OfMine', '2002-07-25', 20, 20, 17, 'M'),
+	(19, 'Magimbi', 'Raymond', '1990-03-15', 20, 20, 12, 'F'),
+    (20, 'Hilary', 'Edmund', '1988-08-25', 21, 21, 13, 'M');
+
+
+
+
+	CREATE TABLE Telephone(
+telephoneNo varChar(12) PRIMARY KEY,
+staffId INT,
+FOREIGN KEY (staffId) REFERENCES Staff(staffId),
+CONSTRAINT CHK_TelephoneNo_Format CHECK (telephoneNo LIKE '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]')
+)
+
+INSERT INTO Telephone(telephoneNo,staffId) VALUES
+('641-819-1711', 1),
+('641-819-1712', 2),
+('641-819-1713', 1),
+('641-819-1714', 3),
+('641-819-1715', 4),
+('641-819-1716', 5),
+('641-819-1717', 5),
+('641-819-1718', 6),
+('641-819-1719', 7),
+('641-819-1720', 8),
+('641-819-1721', 9),
+('641-819-1811', 9),
+('641-819-1812', 10),
+('641-819-1813', 10),
+('641-819-1814', 11),
+('641-819-1815', 12),
+('641-819-1816', 13),
+('641-819-1817', 13),
+('641-819-1818', 14),
+('641-819-1819', 15),
+('641-819-1820', 16),
+('641-819-1821', 17),
+('641-819-1917', 18),
+('641-819-1918', 19),
+('641-819-1919', 19),
+('641-819-1920', 20),
+('641-819-1921', 20),
+('641-819-1930', 21),
+('641-819-1931', 21);
+
+
+
+
+CREATE TABLE ClientRegistration (
+    formNo INT PRIMARY KEY,
+    registrationDate DATE,
+    officeId INT,
+    clientNo INT,
+    FOREIGN KEY (officeId) REFERENCES Offices(officeId),
+    FOREIGN KEY (clientNo) REFERENCES Clients(clientNo)
+);
+
+INSERT INTO ClientRegistration (formNo, registrationDate, officeId, clientNo) VALUES
+(1001, '2022-11-15', 1, 1),
+(1002, '2022-11-20', 1, 2),
+(6001, '2022-03-25', 6, 3),
+(7001, '2022-12-15', 7, 4),
+(3001, '2023-01-21', 3, 7),
+(3002, '2023-01-21', 3, 8),
+(3003, '2023-02-01', 3, 9),
+(2001, '2021-12-20', 2, 10),
+(2002, '2022-02-20', 2, 11),
+(3004, '2022-02-02', 3, 13),
+(1004, '2023-12-30', 1, 14),
+(1003, '2022-12-28', 1, 12),
+(2003, '2023-01-25', 2, 15),
+(6002, '2023-01-20', 6, 16),
+(7002, '2023-01-02', 7, 17),
+(6003, '2023-01-25', 6, 18),
+(6004, '2023-01-26', 6, 19),
+(7003, '2023-02-04', 7, 20);
+
+
+CREATE TABLE InterviewDetails (
+    clientNo INT,
+    staffId INT,
+    interviewDate DATE,
+    notes VARCHAR(255),
+    PRIMARY KEY (clientNo, staffId, interviewDate),
+    FOREIGN KEY (clientNo) REFERENCES Clients(clientNo),
+    FOREIGN KEY (staffId) REFERENCES Staff(staffId)
+);
+
+
+INSERT INTO InterviewDetails (clientNo, staffId, interviewDate, notes) VALUES
+(1, 1, '2022-11-15', 'Client excited .Worried about manual cars.'),
+(2, 2, '2022-11-20', 'Client prefers to learn at a slow pace.'),
+(3, 20, '2022-03-25', 'Client is wants a refresher course.'),
+(4, 21, '2022-12-15', 'Client was asked to take a refresher course by the government.'),
+(7, 8, '2023-01-21', 'Client interested in defensive driving.'),
+(8, 19, '2023-01-21', 'Attention needs to be given to this client. He seems psycho.'),
+(9, 8, '2023-02-01', 'Client wants to learn how to drive a manual car.'),
+(10, 6, '2021-12-20', 'Client only knows how to drive on the right hand side.'),
+(11, 6, '2022-02-20', 'Client has some experience driving farm trucks.'),
+(13, 19, '2022-02-02', 'Ver calm client and very receptive to learn'),
+(14, 3, '2023-12-30', 'Amiable cleint'),
+(12, 2, '2022-12-28', 'Cleint is very attentive to details.'),
+(15, 20, '2023-01-25', 'Client needs glasses to see properly.'),
+(16, 20, '2023-01-20', 'Client needs to be taught how to overtake/pass other cars.'),
+(17, 21, '2023-01-02', 'Client is very friendly. It will be fun riding with him.'),
+(18, 20, '2023-01-25', 'Client is always looking at his phone.'),
+(19, 20, '2023-01-26', 'Client seems so anxious. He cannot wait to get this over with.'),
+(20, 21, '2023-02-04', 'Client is disciplined and a stickler for rules.');
+
+
+CREATE TABLE LessonType (
+    lessonTypeId INT PRIMARY KEY,
+    lessonName VARCHAR(255)
+);
+
+-- Inserting values for LessonType
+INSERT INTO LessonType (lessonTypeId, lessonName)
+VALUES
+(1, 'Beginner'),
+(2, 'Medium driving'),
+(3, 'Advanced driver'),
+(4, 'Highway master'),
+(5, 'Defensive driving'),
+(6, 'Trucks');
+
+
+CREATE TABLE Lesson (
+    lessonId INT PRIMARY KEY,
+    lessontypeId INT,
+    StartDateTime DATETIME,
+    EndDateTime DATETIME,
+    staffId INT,
+    clientNo INT,
+    comment TEXT,
+    mileage FLOAT,
+    FOREIGN KEY (staffId) REFERENCES Staff(staffId),
+    FOREIGN KEY (clientNo) REFERENCES Clients(clientNo),
+    FOREIGN KEY (lessontypeId) REFERENCES LessonType(lessonTypeId)
+);
+
+INSERT INTO Lesson (lessonId, lessontypeId, StartDateTime, EndDateTime, staffId,clientNo,comment,mileage)
+VALUES
+(1, 3, '2022-12-29 13:00:00', '2022-01-03 14:00:00', 20,3,'Ready to take exam',7.5),
+(2, 1, '2022-12-29 13:00:00', '2022-01-04 14:00:00', 21,4,'Wants to try the exam. Given a go ahead albeit with reservations',12.5),
+(3, 1, '2023-01-01 10:00:00', '2023-01-01 11:00:00', 1,1,'Needs more lessons',9.8),  
+(4, 2, '2023-01-01 10:30:00', '2023-01-01 11:30:00', 2,2,'Didnt show up',NULL), 
+(5, 1, '2023-01-07 09:00:00', '2023-01-07 10:00:00', 8,7,'Ready to take exam',6.3), 
+(6, 2, '2023-01-09 08:00:00', '2023-01-05 09:00:00', 18,5,'Could benefit from defensive driving',15),
+(7, 3, '2023-01-10 14:00:00', '2023-01-06 15:00:00', 17,6,'Ready to take exam',11),
+(8, 2, '2023-01-14 11:00:00', '2023-01-14 12:00:00', 3,14,'Ready to take exam',10),
+(9, 1, '2023-02-01 10:00:00', '2023-02-01 11:00:00', 2,1,'Driver too anxious. Needs more lessons',13.5),  
+(10, 2, '2023-02-01 10:30:00', '2023-02-01 11:30:00', 1,2,'Still unsure of how to drive. Needs more time',15.5), 
+(11, 2, '2023-02-08 11:00:00', '2023-02-08 12:00:00', 19,8,'Ready to take exam',10.5),
+(12, 3, '2023-02-09 13:00:00', '2023-02-09 14:30:00', 8,9,'Ready to take exam',7.5), 
+(13, 1, '2023-02-10 08:00:00', '2023-02-10 09:00:00', 6,10,'Should do advanced driving. Excellent so far',10.5),
+(14, 2, '2023-02-10 10:00:00', '2023-02-10 11:00:00', 6,11,'Ready to take exam',9.95),
+(15, 1, '2023-02-13 09:00:00', '2023-02-13 10:00:00', 19,13,'Needs more practice before exam',12.5),
+(16, 3, '2023-02-18 13:00:00', '2023-02-12 13:00:00', 3,12,'Ready to take exam',11.25),
+(17, 1, '2023-03-01 10:00:00', '2023-03-01 11:00:00', 3,1,'Not ready for exam',18.3),  
+(18, 2, '2023-03-01 10:30:00', '2023-03-01 11:30:00', 2,2,'Very unsteady driver',14.3), 
+(19, 3, '2023-03-15 13:00:00', '2023-03-15 14:00:00', 6,15,'Ready to take exam. Advanced driver already',4.7), 
+(20, 1, '2023-03-16 10:00:00', '2023-03-16 11:00:00', 20,16,'Ready to take exam',7.55),
+(21, 2, '2023-03-17 12:00:00', '2023-03-17 13:00:00', 21,17,'Needs one more lesson',18.65),
+(22, 2, '2023-03-17 19:00:00', '2023-03-17 20:00:00', 21,17,'Ready to take exam',9.5),
+(23, 3, '2023-03-18 14:30:00', '2023-03-18 15:30:00', 20,18,'Has no learners permit yet',NULL),
+(24, 1, '2023-03-19 11:00:00', '2023-03-19 12:00:00', 20,19,'Needs further lessons on parking',13.5),
+(25, 2, '2023-03-20 10:00:00', '2023-03-20 11:00:00', 21,20,'Ready to take exam',10.5),
+(26, 1, '2023-03-24 08:00:00', '2023-03-24 09:00:00', 6,15,NULL,NULL),
+(27, 2, '2023-03-24 10:00:00', '2023-03-24 11:00:00', 6,15,NULL,NULL),
+(28, 4, '2023-03-24 10:00:00', '2023-03-24 11:00:00', 21,4,NULL,NULL),
+(29, 5, '2023-03-27 11:00:00', '2023-03-27 12:00:00', 21,4,NULL,NULL),
+(30, 4, '2023-03-30 14:00:00', '2023-03-30 15:30:00', 20,19,NULL,NULL),
+(31, 1, '2023-04-01 10:00:00', '2023-04-01 11:00:00', 1,1,NULL, NULL),  
+(32, 2, '2023-04-02 10:30:00', '2023-04-02 11:30:00', 1,2,NULL,NULL);
+
+CREATE TABLE Test (
+    testNo INT PRIMARY KEY,
+    testDate DATE,
+    clientNo INT,
+    status VARCHAR(50),
+    CommentOnResult TEXT,
+    FOREIGN KEY (clientNo) REFERENCES Clients(clientNo)
+);
+
+-- Insert values for clients
+INSERT INTO Test (testNo, testDate, clientNo, status, CommentOnResult) 
+VALUES
+    (1, '2023-01-01', 3, 'Pass', 'Passed highly'),
+    (2, '2023-01-02', 4, 'Fail', 'Didnt obey traffic rules'),
+    (3, '2023-01-03', 2, 'Fail', 'Did the exam without taking the first lesson'),
+    (4, '2023-01-09', 7, 'Pass', 'Passed'),
+    (5, '2023-01-12', 5, 'Passed', 'Passed'),
+    (6, '2023-01-16', 6, 'Passed', 'Barely passed the written exam'),
+    (7, '2023-01-17', 14, 'Pass', 'Passed'),
+    (8, '2023-02-03', 1, 'Fail', 'He is too anxious'),
+    (9, '2023-02-04', 2, 'Fail', 'Unaware of speed limits'),
+	(10, '2023-02-09', 8, 'Pass', 'Passed'),
+	(11, '2023-02-10', 9, 'Pass', 'Passed'),
+	(12, '2023-02-13', 10, 'Pass', 'Passed'),
+	(13, '2023-02-13', 11, 'Pass', 'Passed'),
+    (14, '2023-02-15', 13, 'Pass', 'Passed even when we thought he wasnt ready'),
+	(15, '2023-02-20', 12, 'Pass', 'Passed'),
+	(16, '2023-03-03', 1, 'Fail', 'Did the test wven when they were advised against it'),
+	(17, '2023-01-03', 2, 'Fail', 'He is still erratic on the road'),
+	(18, '2023-01-17', 20, 'Failed', 'Did not know who has right of way at intersections'),
+    (19, '2023-03-17', 15, 'Fail', 'Forgot to wear his contact lenses, ran red lights'),
+	(20, '2023-03-17', 16, 'Pass', 'Passed'),
+	(21, '2023-03-19', 17, 'Pass', 'Passed'),
+	(22, '2023-03-21', 20, 'Pass', 'Passed'),
+	(23, '2023-03-21', 1, 'Failed', 'Road rage');
