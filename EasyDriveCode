@@ -326,24 +326,24 @@ CREATE TABLE InterviewDetails (
 
 
 INSERT INTO InterviewDetails (clientNo, staffId, interviewDate, notes) VALUES
-(1, 1, '2022-11-15', 'Client excited .Worried about manual cars.'),
-(2, 2, '2022-11-20', 'Client prefers to learn at a slow pace.'),
-(3, 20, '2022-03-25', 'Client is wants a refresher course.'),
-(4, 21, '2022-12-15', 'Client was asked to take a refresher course by the government.'),
-(7, 8, '2023-01-21', 'Client interested in defensive driving.'),
-(8, 19, '2023-01-21', 'Attention needs to be given to this client. He seems psycho.'),
-(9, 8, '2023-02-01', 'Client wants to learn how to drive a manual car.'),
-(10, 6, '2021-12-20', 'Client only knows how to drive on the right hand side.'),
-(11, 6, '2022-02-20', 'Client has some experience driving farm trucks.'),
-(13, 19, '2022-02-02', 'Ver calm client and very receptive to learn'),
-(14, 3, '2023-12-30', 'Amiable cleint'),
-(12, 2, '2022-12-28', 'Cleint is very attentive to details.'),
-(15, 20, '2023-01-25', 'Client needs glasses to see properly.'),
-(16, 20, '2023-01-20', 'Client needs to be taught how to overtake/pass other cars.'),
-(17, 21, '2023-01-02', 'Client is very friendly. It will be fun riding with him.'),
-(18, 20, '2023-01-25', 'Client is always looking at his phone.'),
-(19, 20, '2023-01-26', 'Client seems so anxious. He cannot wait to get this over with.'),
-(20, 21, '2023-02-04', 'Client is disciplined and a stickler for rules.');
+(1, 1, '2022-11-15', 'Has Permit. Client excited .Worried about manual cars.'),
+(2, 2, '2022-11-20', 'Has Permit. Client prefers to learn at a slow pace.'),
+(3, 20, '2022-03-25', 'Has Permit. Client is wants a refresher course.'),
+(4, 21, '2022-12-15', 'Licence was revoked. Client was asked to take a refresher course by the government.'),
+(7, 8, '2023-01-21', 'Has Permit. Client interested in defensive driving.'),
+(8, 19, '2023-01-21', 'Has Permit. Attention needs to be given to this client. He seems psycho.'),
+(9, 8, '2023-02-01', 'Has Permit. Client wants to learn how to drive a manual car.'),
+(10, 6, '2021-12-20', 'Has permit. Client only knows how to drive on the right hand side.'),
+(11, 6, '2022-02-20', 'Has permit. Client has some experience driving farm trucks.'),
+(13, 19, '2022-02-02', 'Has Permit. Very calm client and very receptive to learn'),
+(14, 3, '2023-12-30', 'Has Permit. Amiable cleint'),
+(12, 2, '2022-12-28', 'Has a week old permit. Client is very attentive to details.'),
+(15, 20, '2023-01-25', 'Has a nearly expired licence. Client needs glasses to see properly.'),
+(16, 20, '2023-01-20', 'Has Permit. Client needs to be taught how to overtake/pass other cars.'),
+(17, 21, '2023-01-02', 'Has Permit. Client is very friendly. It will be fun riding with him.'),
+(18, 20, '2023-01-25', 'Has No permit. Client is always looking at his phone.'),
+(19, 20, '2023-01-26', 'Client has a permit but seems so anxious. He cannot wait to get this over with.'),
+(20, 21, '2023-02-04', 'Client has permit, is disciplined and a stickler for rules.');
 
 
 CREATE TABLE LessonType (
