@@ -438,11 +438,16 @@ VALUES
 	(13, '2023-02-13', 11, 'Pass', 'Passed'),
     (14, '2023-02-15', 13, 'Pass', 'Passed even when we thought he wasnt ready'),
 	(15, '2023-02-20', 12, 'Pass', 'Passed'),
-	(16, '2023-03-03', 1, 'Fail', 'Did the test wven when they were advised against it'),
+	(16, '2023-03-03', 1, 'Fail', 'Did the test even when they were advised against it'),
 	(17, '2023-03-03', 2, 'Fail', 'He is still erratic on the road'),
 	(18, '2023-03-17', 20, 'Failed', 'Did not know who has right of way at intersections'),
     (19, '2023-03-17', 15, 'Fail', 'Forgot to wear his contact lenses, ran red lights'),
 	(20, '2023-03-17', 16, 'Pass', 'Passed'),
 	(21, '2023-03-19', 17, 'Pass', 'Passed'),
-	(22, '2023-03-21', 20, 'Pass', 'Passed'),
-	(23, '2023-03-21', 1, 'Failed', 'Road rage');
+	(22, '2023-03-20', 2, 'Failed', 'Road rage')
+	(23, '2023-03-20', 1, 'Failed', 'Road rage');
+	(24, '2023-03-21', 20, 'Pass', 'Passed'),
+	(25, '2023-03-21', 1, 'Failed', 'Road rage')
+	(26, '2023-03-21', 2, 'Pass', 'Finally passed')
+	
+       
