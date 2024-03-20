@@ -444,10 +444,10 @@ VALUES
     (19, '2023-03-17', 15, 'Fail', 'Forgot to wear his contact lenses, ran red lights'),
 	(20, '2023-03-17', 16, 'Pass', 'Passed'),
 	(21, '2023-03-19', 17, 'Pass', 'Passed'),
-	(22, '2023-03-20', 2, 'Failed', 'Road rage')
-	(23, '2023-03-20', 1, 'Failed', 'Road rage');
+	(22, '2023-03-20', 2, 'Failed', 'Road rage'),
+	(23, '2023-03-20', 1, 'Failed', 'Road rage'),
 	(24, '2023-03-21', 20, 'Pass', 'Passed'),
-	(25, '2023-03-21', 1, 'Failed', 'Road rage')
-	(26, '2023-03-21', 2, 'Pass', 'Finally passed')
+	(25, '2023-03-21', 1, 'Failed', 'Road rage'),
+	(26, '2023-03-21', 2, 'Pass', 'Finally passed');
 	
        
